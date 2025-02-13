@@ -1,20 +1,17 @@
-// Calculator Program (1st ever mini project)
+//DIGITAL!!
 
-const display = document.getElementById("display");
+function updateClock(){
 
-function appendToDisplay(input){
-    display.value += input;
+    const now = new Date();
+    let hours = now.getHours().toString().padStart(2,0);
+    const meridiem = hours >= 12 ? "PM" : "AM";
+    hours = hours % 12 || 12;
+    hours = hours.toString().padStart(2,0);
+    const minutes = now.getMinutes().toString().padStart(2,0);
+    const seconds = now.getSeconds().toString().padStart(2,0);
+    const timeString = `${hours}:${minutes}:${seconds} ${meridiem}`; 
+    document.getElementById('clock').textContent = timeString;
 }
 
-function clearDisplay(){
-    display.value = "";
-}
-
-function calculate(){
-    try{
-        display.value = eval(display.value);
-    }
-    catch(error){
-        display.value = 'Error';
-    }
-}
+updateClock();
+setInterval(updateClock, 1000);
